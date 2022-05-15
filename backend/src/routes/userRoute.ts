@@ -15,8 +15,13 @@ router
     userMiddleware.passwordLength,
     userController.createUser
   )
-  .get(
+  .get('/', userController.findAllUser)
+  .put(
     '/',
+    userController.updateUser,
+  )
+  .get(
+    '/specific',
     userMiddleware.withoutEmail,
     userMiddleware.withoutPassword,
     userMiddleware.invalidEmail,

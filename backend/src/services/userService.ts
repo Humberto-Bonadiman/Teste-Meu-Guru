@@ -16,6 +16,12 @@ const createUser = (user: UserI) => {
   return User;
 };
 
+const findAllUser = () => {
+  const User = prisma.user.findMany();
+
+  return User;
+}
+
 const findUser = (email: string, password: string) => {
   const User = prisma.user.findFirst({
     where: {
@@ -27,7 +33,25 @@ const findUser = (email: string, password: string) => {
   return User;
 };
 
+const updateUser = (id: number, userUpdate: UserI) => {
+  const { name, email, password } = userUpdate;
+  const User = prisma.user.update({
+    where: {
+      id: Number(id),
+    },
+    data: {
+      name,
+      email,
+      password,
+    }
+  });
+
+  return User;
+}
+
 export default {
   createUser,
   findUser,
+  findAllUser,
+  updateUser,
 };
