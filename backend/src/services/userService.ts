@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 const createUser = (user: UserI) => {
   const { name, email, password } = user;
-  const create = prisma.user.create({
+  const User = prisma.user.create({
     data: {
       name,
       email,
@@ -13,7 +13,7 @@ const createUser = (user: UserI) => {
     },
   });
 
-  return create;
+  return User;
 };
 
 
