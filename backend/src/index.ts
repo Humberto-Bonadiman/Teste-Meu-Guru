@@ -1,12 +1,13 @@
-import { PrismaClient } from '@prisma/client';
 import express from 'express';
+import cors from 'cors';
+import userRoute from './routes/userRoute';
 
-const prisma = new PrismaClient();
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
-// ... your REST API routes will go here
+app.use('/user', userRoute.router);
 
 app.listen(3000, () =>
   console.log('REST API server ready at: http://localhost:3000'),
