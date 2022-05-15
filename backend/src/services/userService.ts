@@ -16,7 +16,18 @@ const createUser = (user: UserI) => {
   return User;
 };
 
+const findUser = (email: string, password: string) => {
+  const User = prisma.user.findFirst({
+    where: {
+      email,
+      password,
+    },
+  });
+
+  return User;
+};
 
 export default {
   createUser,
+  findUser,
 };

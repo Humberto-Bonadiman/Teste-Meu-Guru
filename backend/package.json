@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node .",
-    "dev": "ts-node main",
+    "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "stop": "sudo service postgresql stop",
@@ -30,6 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "eslint": "^8.15.0",
+    "nodemon": "^2.0.16",
     "prisma": "^3.14.0",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.4"

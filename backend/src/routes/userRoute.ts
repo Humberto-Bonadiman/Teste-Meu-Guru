@@ -14,6 +14,13 @@ router
     userMiddleware.nameLength,
     userMiddleware.passwordLength,
     userController.createUser
+  )
+  .get(
+    '/',
+    userMiddleware.withoutEmail,
+    userMiddleware.withoutPassword,
+    userMiddleware.invalidEmail,
+    userController.findUser
   );
 
 export default {
