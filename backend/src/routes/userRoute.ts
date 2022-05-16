@@ -16,17 +16,15 @@ router
     userController.createUser
   )
   .get('/', userController.findAllUser)
-  .put(
-    '/',
-    userController.updateUser,
-  )
   .get(
     '/specific',
     userMiddleware.withoutEmail,
     userMiddleware.withoutPassword,
     userMiddleware.invalidEmail,
     userController.findUser
-  );
+  )
+  .put('/:id', userController.updateUser)
+  .delete('/:id', userController.deleteUser);
 
 export default {
   router,

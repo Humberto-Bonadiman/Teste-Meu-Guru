@@ -33,17 +33,28 @@ const findUser = (email: string, password: string) => {
   return User;
 };
 
-const updateUser = (id: number, userUpdate: UserI) => {
-  const { name, email, password } = userUpdate;
-  const User = prisma.user.update({
-    where: {
-      id: Number(id),
-    },
-    data: {
-      name,
-      email,
-      password,
-    }
+const updateUser = (idNumber: number, user: UserI) => {
+  try {
+    const { email, name, password } = user;
+    const User = prisma.user.updateMany({
+      data: {
+        email,
+        name,
+        password,
+      },
+      where: { id: idNumber } },
+    );
+    console.log(User);
+  
+    return User;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const deleteUser = (id: number) => {
+  const User = prisma.user.delete({
+    where: { id },
   });
 
   return User;
@@ -54,4 +65,5 @@ export default {
   findUser,
   findAllUser,
   updateUser,
+  deleteUser,
 };

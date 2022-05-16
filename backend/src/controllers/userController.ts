@@ -25,11 +25,21 @@ const findAllUser = async (_req: Request, res: Response) => {
 };
 
 const updateUser = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const user = req.body;
+  try {
+    const { id } = req.params;
+    const user = req.body;
+  
+    const update = await userService.updateUser(Number(id), user);
+    return res.status(StatusCode.NO_CONTENT).json({ update });
+  } catch (error) {
+    throw error;
+  }
+};
 
-  const update = await userService.updateUser(Number(id), user);
-  return res.status(StatusCode.OK).json({ update });
+const deleteUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const user = await userService.deleteUser(Number(id));
+  return res.status(StatusCode.OK).json({ user });
 }
 
 export default {
@@ -37,4 +47,5 @@ export default {
   findAllUser,
   createUser,
   updateUser,
+  deleteUser,
 };
