@@ -16,6 +16,7 @@ const PASSWORD = 'Password is required';
 const INVALIDEMAIL = 'Format of email is invalid';
 const INVALIDNAME = 'Name must be longer than 8 characters';
 const INVALIDPASSWORD = 'Password must be longer than 6 characters';
+const IDNOTFOUND = 'Id not found';
 
 const withoutName = (req: Request, res: Response, next: NextFunction) => {
   const { name } = req.body as UserI;
@@ -71,6 +72,19 @@ const passwordLength = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+const idNotFound = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+  const user = await prisma.user.findFirst({
+    where: { id: Number(id) },
+  });
+  console.log(user);
+  if (user === null) {
+    return res.status(StatusCode.NOT_FOUND).json({ message: IDNOTFOUND });
+  }
+
+  return next();
+}
+
 export default {
   withoutName,
   withoutEmail,
@@ -78,4 +92,5 @@ export default {
   invalidEmail,
   nameLength,
   passwordLength,
+  idNotFound,
 };

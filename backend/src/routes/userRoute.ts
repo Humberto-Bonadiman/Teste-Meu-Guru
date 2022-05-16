@@ -23,8 +23,22 @@ router
     userMiddleware.invalidEmail,
     userController.findUser
   )
-  .put('/:id', userController.updateUser)
-  .delete('/:id', userController.deleteUser);
+  .put(
+    '/:id',
+    userMiddleware.withoutName,
+    userMiddleware.withoutEmail,
+    userMiddleware.withoutPassword,
+    userMiddleware.invalidEmail,
+    userMiddleware.nameLength,
+    userMiddleware.passwordLength,
+    userMiddleware.idNotFound,
+    userController.updateUser
+  )
+  .delete(
+    '/:id',
+    userMiddleware.idNotFound,
+    userController.deleteUser
+  );
 
 export default {
   router,
