@@ -15,7 +15,7 @@ router
     userMiddleware.passwordLength,
     userController.createUser
   )
-  .get('/', userController.findAllUser)
+  .get('/search/:page', userController.findAllUser)
   .get(
     '/specific',
     userMiddleware.withoutEmail,

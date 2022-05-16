@@ -16,8 +16,19 @@ const createUser = (user: UserI) => {
   return User;
 };
 
-const findAllUser = () => {
-  const User = prisma.user.findMany();
+const findAllUser = (page: number) => {
+  if (page === 0) {
+    const User = prisma.user.findMany({
+      take: 10,
+    });
+  
+    return User;
+  }
+  const skipUsers = 10 * page;
+  const User = prisma.user.findMany({
+    skip: skipUsers,
+    take: 10,
+  });
 
   return User;
 }

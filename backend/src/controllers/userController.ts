@@ -19,8 +19,9 @@ const findUser = async (req: Request, res: Response) => {
   return res.status(StatusCode.OK).json({ find });
 };
 
-const findAllUser = async (_req: Request, res: Response) => {
-  const find = await userService.findAllUser();
+const findAllUser = async (req: Request, res: Response) => {
+  const { page } = req.params;
+  const find = await userService.findAllUser(Number(page));
   return res.status(StatusCode.OK).json({ find });
 };
 
