@@ -5,7 +5,6 @@ import StatusCode from '../enums/StatusCode';
 import { app } from '../index';
 import { Response } from 'superagent';
 import { PrismaClient } from '@prisma/client';
-import { mockUser } from './mockUser';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -129,6 +128,17 @@ describe('Testar a rota "user/" com PUT', () => {
   });
 
   describe('Quando os dados fornecidos estão corretos', () => {
+    let updateUser: sinon.SinonStub;
+
+    before(() => {
+      const prisma = new PrismaClient();
+      updateUser = sinon.stub(prisma.user, 'updateMany').resolves({ count: 1 });
+    });
+
+    after( async () => {
+      updateUser.restore();
+    });
+
     it('Retorna o status 200 com os dados alterados', async () => {
       chaiHttpResponse = await chai
         .request(app)
