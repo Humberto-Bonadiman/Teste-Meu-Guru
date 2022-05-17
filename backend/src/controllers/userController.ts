@@ -7,7 +7,7 @@ const NOTFOUND = 'Incorrect email or password';
 const createUser = async (req: Request, res: Response) => {
   const user = req.body;
   const create = await userService.createUser(user);
-  return res.status(StatusCode.CREATED).json({ create });
+  return res.status(StatusCode.OK).json({ create });
 };
 
 const findUser = async (req: Request, res: Response) => {

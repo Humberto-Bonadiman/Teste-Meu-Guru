@@ -16,6 +16,7 @@ const PASSWORD = 'Password is required';
 const INVALIDEMAIL = 'Format of email is invalid';
 const INVALIDNAME = 'Name must be longer than 8 characters';
 const INVALIDPASSWORD = 'Password must be longer than 6 characters';
+const ALREADYEXIST = 'User already exist';
 const IDNOTFOUND = 'Id not found';
 
 const withoutName = (req: Request, res: Response, next: NextFunction) => {
@@ -72,12 +73,24 @@ const passwordLength = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+const checkUser = async (req: Request, res: Response, next: NextFunction) => {
+  const { email } = req.body as UserI;
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    }
+  });
+
+  if (user !== null) {
+    return res.status(StatusCode.UNAUTHORIZED).json({ message: ALREADYEXIST });
+  }
+};
+
 const idNotFound = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   const user = await prisma.user.findFirst({
     where: { id: Number(id) },
   });
-  console.log(user);
   if (user === null) {
     return res.status(StatusCode.NOT_FOUND).json({ message: IDNOTFOUND });
   }
@@ -92,5 +105,6 @@ export default {
   invalidEmail,
   nameLength,
   passwordLength,
+  checkUser,
   idNotFound,
 };
