@@ -7,8 +7,8 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "scripts": {
-    "prestart": "npx prisma generate && npx prisma migrate dev && ts-node prisma/seed.ts",
     "start": "sudo service postgresql stop && docker-compose up -d && nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
+    "seed": "npx prisma generate && npx prisma migrate dev && ts-node prisma/seed.ts",
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",

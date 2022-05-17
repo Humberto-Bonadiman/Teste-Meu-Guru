@@ -1,0 +1,1 @@
+"prestart": "npx prisma generate && npx prisma migrate dev && ts-node prisma/seed.ts",

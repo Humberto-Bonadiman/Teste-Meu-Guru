@@ -18,6 +18,7 @@ const INVALIDNAME = 'Name must be longer than 8 characters';
 const INVALIDPASSWORD = 'Password must be longer than 6 characters';
 const ALREADYEXIST = 'User already exist';
 const IDNOTFOUND = 'Id not found';
+const DONTEXIST = 'Incorrect email or password';
 
 const withoutName = (req: Request, res: Response, next: NextFunction) => {
   const { name } = req.body as UserI;
@@ -84,6 +85,8 @@ const checkUser = async (req: Request, res: Response, next: NextFunction) => {
   if (user !== null) {
     return res.status(StatusCode.UNAUTHORIZED).json({ message: ALREADYEXIST });
   }
+
+  next();
 };
 
 const idNotFound = async (req: Request, res: Response, next: NextFunction) => {
@@ -93,10 +96,10 @@ const idNotFound = async (req: Request, res: Response, next: NextFunction) => {
   });
   if (user === null) {
     return res.status(StatusCode.NOT_FOUND).json({ message: IDNOTFOUND });
-  }
+  };
 
   return next();
-}
+};
 
 export default {
   withoutName,

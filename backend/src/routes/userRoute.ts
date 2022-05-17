@@ -13,6 +13,7 @@ router
     userMiddleware.invalidEmail,
     userMiddleware.nameLength,
     userMiddleware.passwordLength,
+    userMiddleware.checkUser,
     userController.createUser
   )
   .get('/search/:page', userController.findAllUser)
