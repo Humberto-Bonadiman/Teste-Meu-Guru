@@ -55,7 +55,6 @@ const updateUser = (idNumber: number, user: UserI) => {
       },
       where: { id: idNumber } },
     );
-    console.log(User);
   
     return User;
   } catch (error) {

@@ -31,7 +31,7 @@ const updateUser = async (req: Request, res: Response) => {
     const user = req.body;
   
     const update = await userService.updateUser(Number(id), user);
-    return res.status(StatusCode.NO_CONTENT).json({ update });
+    return res.status(StatusCode.OK).json({ update });
   } catch (error) {
     throw error;
   }

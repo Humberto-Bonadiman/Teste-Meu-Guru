@@ -1,7 +1,4 @@
-import { PrismaClient, User } from '@prisma/client';
-const prisma = new PrismaClient();
-
-const users: User[] = [
+export const mockUser = [
   {
     id: 11,
     email: 'julio_santos@email.com',
@@ -75,26 +72,3 @@ const users: User[] = [
     password: '12345678'
   }
 ];
-
-async function userSeed() {
-  const resultUser = users.map(async (usercreate) => {
-    const response = await prisma.user.upsert({
-      where: { id: usercreate.id },
-      update: {},
-      create: {
-        ...usercreate
-      },
-    });
-
-    return response;
-  });
-
-  await Promise.all(resultUser);
-};
-
-userSeed().catch((e) => {
-  console.log(e);
-  process.exit(1);
-}).finally(async () => {
-  await prisma.$disconnect();
-});

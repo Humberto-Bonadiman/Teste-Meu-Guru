@@ -18,7 +18,6 @@ const INVALIDNAME = 'Name must be longer than 8 characters';
 const INVALIDPASSWORD = 'Password must be longer than 6 characters';
 const ALREADYEXIST = 'User already exist';
 const IDNOTFOUND = 'Id not found';
-const DONTEXIST = 'Incorrect email or password';
 
 const withoutName = (req: Request, res: Response, next: NextFunction) => {
   const { name } = req.body as UserI;
