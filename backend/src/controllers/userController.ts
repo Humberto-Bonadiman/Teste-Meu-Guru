@@ -10,18 +10,23 @@ const createUser = async (req: Request, res: Response) => {
   return res.status(StatusCode.OK).json({ create });
 };
 
+const findAllUser = async (_req: Request, res: Response) => {
+  const findAll = await userService.findAllUser();
+  return res.status(StatusCode.OK).json({ findAll });
+}
+
 const findUser = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  const find = await userService.findUser(email, password);
+  const { email, name } = req.body;
+  const find = await userService.findUser(email, name);
   if (find === null) {
     return res.status(StatusCode.NOT_FOUND).json({ message: NOTFOUND });
   };
   return res.status(StatusCode.OK).json({ find });
 };
 
-const findAllUser = async (req: Request, res: Response) => {
+const findUserByPagination = async (req: Request, res: Response) => {
   const { page } = req.params;
-  const find = await userService.findAllUser(Number(page));
+  const find = await userService.findUserByPagination(Number(page));
   return res.status(StatusCode.OK).json({ find });
 };
 
@@ -44,8 +49,9 @@ const deleteUser = async (req: Request, res: Response) => {
 }
 
 export default {
-  findUser,
   findAllUser,
+  findUser,
+  findUserByPagination,
   createUser,
   updateUser,
   deleteUser,

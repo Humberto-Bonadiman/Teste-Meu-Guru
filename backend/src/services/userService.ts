@@ -16,7 +16,13 @@ const createUser = (user: UserI) => {
   return User;
 };
 
-const findAllUser = (page: number) => {
+const findAllUser = () => {
+  const users = prisma.user.findMany();
+
+  return users;
+};
+
+const findUserByPagination = (page: number) => {
   if (page === 0) {
     const User = prisma.user.findMany({
       take: 10,
@@ -33,11 +39,11 @@ const findAllUser = (page: number) => {
   return User;
 }
 
-const findUser = (email: string, password: string) => {
+const findUser = (email: string, name: string) => {
   const User = prisma.user.findFirst({
     where: {
       email,
-      password,
+      name,
     },
   });
 
@@ -72,8 +78,9 @@ const deleteUser = (id: number) => {
 
 export default {
   createUser,
-  findUser,
   findAllUser,
+  findUser,
+  findUserByPagination,
   updateUser,
   deleteUser,
 };

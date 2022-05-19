@@ -16,11 +16,12 @@ router
     userMiddleware.checkUser,
     userController.createUser
   )
-  .get('/search/:page', userController.findAllUser)
+  .get('/', userController.findAllUser)
+  .get('/search/:page', userController.findUserByPagination)
   .get(
     '/specific',
     userMiddleware.withoutEmail,
-    userMiddleware.withoutPassword,
+    userMiddleware.withoutName,
     userMiddleware.invalidEmail,
     userController.findUser
   )
