@@ -1,12 +1,11 @@
-const appJson = 'application/json';
-const NUMBER = 3001;
-const PORT = process.env.REACT_APP_BACKEND_PORT || NUMBER;
-const URL = process.env.REACT_APP_HOSTNAME || 'localhost';
+const appJson: string = 'application/json';
+const PORT: string = '3001';
+const URL: string = 'localhost';
 
 export interface UserI {
-  name: string,
-  email: string,
-  password: string,
+  name: string;
+  email: string;
+  password: string;
 }
 
 export const updateFetch = async (id: number, user: UserI) => {
@@ -15,13 +14,13 @@ export const updateFetch = async (id: number, user: UserI) => {
     method: 'PUT',
     headers: {
       Accept: appJson,
-      'Content-Type': appJson,
+      'Content-Type': appJson
     },
     body: JSON.stringify({
       name,
       email,
-      password,
-    }),
+      password
+    })
   });
 
   const response = await updateUser;

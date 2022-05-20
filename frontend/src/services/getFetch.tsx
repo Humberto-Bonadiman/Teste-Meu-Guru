@@ -1,15 +1,14 @@
-const appJson = 'application/json';
-const NUMBER = 3001;
-const PORT = process.env.REACT_APP_BACKEND_PORT || NUMBER;
-const URL = process.env.REACT_APP_HOSTNAME || 'localhost';
+const appJson: string = 'application/json';
+const PORT: string = '3001';
+const URL: string = 'localhost';
 
 export const fetchUsers = async (page: number) => {
   const fetchPageUsers = fetch(`http://${URL}:${PORT}/user/search/${page}`, {
     method: 'GET',
     headers: {
       Accept: appJson,
-      'Content-Type': appJson,
-    },
+      'Content-Type': appJson
+    }
   });
 
   const response = await fetchPageUsers;
@@ -21,8 +20,8 @@ export const fetchAllUsers = async () => {
     method: 'GET',
     headers: {
       Accept: appJson,
-      'Content-Type': appJson,
-    },
+      'Content-Type': appJson
+    }
   });
 
   const response = await fetchAllUsers;
@@ -31,15 +30,15 @@ export const fetchAllUsers = async () => {
 
 export const fetchOneUser = async (email: string, name: string) => {
   const fetchUser = fetch(`http://${URL}:${PORT}/user/specific`, {
-    method: 'GET',
+    method: 'POST',
     headers: {
       Accept: appJson,
-      'Content-Type': appJson,
+      'Content-Type': appJson
     },
     body: JSON.stringify({
       email,
-      name,
-    }),
+      name
+    })
   });
 
   const response = await fetchUser;

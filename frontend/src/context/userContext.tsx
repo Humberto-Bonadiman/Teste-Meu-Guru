@@ -1,26 +1,36 @@
-import React, { useState, createContext, ReactNode } from "react";
+import React, { useState, createContext, ReactNode } from 'react';
 
 type UserContextProps = {
   children: ReactNode;
 };
 
+interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+}
+
 type UserContextType = {
-  user: object;
-  setUser: React.Dispatch<React.SetStateAction<object>>;
+  allUsers: IUser[];
+  setAllUsers: React.Dispatch<React.SetStateAction<IUser[]>>;
 };
 
 const initialValue = {
-  user: {},
-  setUser: () => {},
+  allUsers: [
+    {
+      id: 0,
+      name: '',
+      email: '',
+      password: ''
+    }
+  ],
+  setAllUsers: () => [{}]
 };
 
 export const UserContext = createContext<UserContextType>(initialValue);
 
 export const UserContextProvider = ({ children }: UserContextProps) => {
-  const [user, setUser] = useState(initialValue.user);
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      {children}
-    </UserContext.Provider>
-  );
+  const [allUsers, setAllUsers] = useState(initialValue.allUsers);
+  return <UserContext.Provider value={{ allUsers, setAllUsers }}>{children}</UserContext.Provider>;
 };
