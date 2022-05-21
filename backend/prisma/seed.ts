@@ -73,6 +73,42 @@ const users: User[] = [
     email: 'vitor_silveira@email.com',
     name: 'Vitor Ruiz Silveira',
     password: '12345678'
+  },
+  {
+    id: 23,
+    email: 'lais_gambin@email.com',
+    name: 'Laís Steffen Gambin',
+    password: '12345678'
+  },
+  {
+    id: 24,
+    email: 'vitoria_consts@email.com',
+    name: 'Vitória Melo Consts',
+    password: '12345678'
+  },
+  {
+    id: 25,
+    email: 'hugo_silveira@email.com',
+    name: 'Hugo Melo Silveira',
+    password: '12345678'
+  },
+  {
+    id: 26,
+    email: 'nicolau_binsfeld@email.com',
+    name: 'Nicolau Batista Binsfeld',
+    password: '12345678'
+  },
+  {
+    id: 27,
+    email: 'azelindo_bonadiman@email.com',
+    name: 'Azelindo Alberto Bonadiman',
+    password: '12345678'
+  },
+  {
+    id: 28,
+    email: 'arlindo_gomes@email.com',
+    name: 'Arlindo da Silva Gomes',
+    password: '12345678',
   }
 ];
 

@@ -1,14 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
-import EditUser from '../pages/EditUser';
-import Login from '../pages/Login';
-import UserPage from '../pages/UserPage';
+import { BrowserRouter as Router, useRoutes, Navigate } from 'react-router-dom';
+import Users from '../pages/Users';
 
 const App = () => {
   return useRoutes([
-    { path: '/', element: <Login /> },
-    { path: '/users/:page', element: <UserPage /> },
-    { path: '/editUser/:id', element: <EditUser /> }
+    { path: '/', element: <Navigate to="/users/1" /> },
+    { path: '/users/:page', element: <Users /> }
   ]);
 };
 

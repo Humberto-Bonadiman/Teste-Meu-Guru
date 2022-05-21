@@ -10,15 +10,15 @@ export interface UserI {
 
 export const updateFetch = async (id: number, user: UserI) => {
   const { name, email, password } = user;
-  const updateUser = fetch(`http://${URL}:${PORT}/:${id}`, {
+  const updateUser = fetch(`http://${URL}:${PORT}/${id}`, {
     method: 'PUT',
     headers: {
       Accept: appJson,
       'Content-Type': appJson
     },
     body: JSON.stringify({
-      name,
       email,
+      name,
       password
     })
   });

@@ -14,17 +14,17 @@ describe('Testar a rota "/user/specific" com GET', () => {
 
   describe('Se o campo email e o campo password forem preenchidos corretamente', () => {
     let findUser: sinon.SinonStub;
-    const userPayload = {
+    const userPayload =   {
       id: 11,
-      name: 'Júlio Ramiro dos Santos',
       email: 'julio_santos@email.com',
+      name: 'Júlio Ramiro dos Santos',
       password: '12345678'
     };
     const loginPayload = {
       find: {
         id: userPayload.id,
-        name: 'Júlio Ramiro dos Santos',
         email: 'julio_santos@email.com',
+        name: 'Júlio Ramiro dos Santos',
         password: '12345678'
       },
     };
@@ -41,7 +41,7 @@ describe('Testar a rota "/user/specific" com GET', () => {
     it('Retorna o usuário encontrado', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .get('/user/specific')
+        .post('/user/specific')
         .set('X-API-Key', 'foobar')
         .send({ email: 'julio_santos@email.com', name: 'Júlio Ramiro dos Santos' });
 
@@ -57,9 +57,11 @@ describe('Testar a rota "/user/specific" com GET', () => {
     it('Retorna o erro  com status 401 e a mensagem "email" is required', async () => {
       chaiHttpResponse = await chai
          .request(app)
-         .get('/user/specific')
+         .post('/user/specific')
          .set('X-API-Key', 'foobar')
          .send({ name: 'Júlio Ramiro dos Santos' });
+
+      console.log(chaiHttpResponse.body);
         
       expect(chaiHttpResponse).to.have.status(StatusCode.UNAUTHORIZED);
       expect(chaiHttpResponse.body.message).to.be.equal('Email is required');
@@ -70,9 +72,9 @@ describe('Testar a rota "/user/specific" com GET', () => {
     it('Retorna o erro  com status 401 e a mensagem "name" is required', async () => {
       chaiHttpResponse = await chai
          .request(app)
-         .get('/user/specific')
+         .post('/user/specific')
          .set('X-API-Key', 'foobar')
-         .send({ email: "gustavo_santos@email.com" });
+         .send({ email: 'julio_santos@email.com' });
         
       expect(chaiHttpResponse).to.have.status(StatusCode.UNAUTHORIZED);
       expect(chaiHttpResponse.body.message).to.be.equal('Name is required');
@@ -83,10 +85,10 @@ describe('Testar a rota "/user/specific" com GET', () => {
     it('Retorna o erro  com status 401 e a mensagem Format of email is invalid', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .get('/user/specific')
+        .post('/user/specific')
         .set('X-API-Key', 'foobar')
         .send({
-          email: "gustavo_santos@com",
+          email: 'julio_santos@com',
           name: 'Júlio Ramiro dos Santos'
         });
 
