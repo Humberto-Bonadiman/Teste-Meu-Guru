@@ -1,6 +1,6 @@
-const appJson: string = 'application/json';
-const PORT: string = '3001';
-const URL: string = 'localhost';
+const appJson = 'application/json';
+const PORT = '3001';
+const URL = 'localhost';
 
 export const fetchUsers = async (page: number) => {
   const fetchPageUsers = fetch(`http://${URL}:${PORT}/user/search/${page}`, {
