@@ -1,7 +1,8 @@
-import React, { useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { fetchUsers } from '../services/getFetch';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
+import '../styles/tableUsers.css';
 
 function TableUsers() {
   const { allUsers, setAllUsers } = useContext(UserContext);
@@ -12,6 +13,7 @@ function TableUsers() {
     const response = await fetchUsers(paramsLessOne);
     const data = await response.json();
     setAllUsers(data.find);
+    localStorage.setItem('user', JSON.stringify(data.find));
   };
 
   useEffect(() => {
@@ -19,24 +21,26 @@ function TableUsers() {
   }, []);
 
   return (
-    <table className="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        {allUsers.map(({ id, name, email }, index) => (
-          <tr key={index}>
-            <th scope="row">{id}</th>
-            <td>{name}</td>
-            <td>{email}</td>
+    <section className="table-component">
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {allUsers.map(({ id, name, email }, index) => (
+            <tr key={index}>
+              <th scope="row">{id}</th>
+              <td>{name}</td>
+              <td>{email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
   );
 }
 

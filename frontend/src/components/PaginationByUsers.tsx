@@ -3,7 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { fetchAllUsers } from '../services/getFetch';
 import { Pagination } from 'react-bootstrap';
 
-function PaginationByUsers({ active }) {
+interface IActive {
+  active?: number;
+}
+
+function PaginationByUsers({ active }: IActive) {
   const [users, setUsers] = useState([]);
 
   const getPageUsers = async () => {
@@ -37,7 +41,7 @@ function PaginationByUsers({ active }) {
 }
 
 PaginationByUsers.propTypes = {
-  active: PropTypes.any
-};
+  active: PropTypes.number
+}
 
 export default PaginationByUsers;

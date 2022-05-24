@@ -1,0 +1,28 @@
+.alert {
+  color: red;
+  margin-top: 3px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.card {
+  width: 90%;
+  max-width: 400px;
+}
+
+.mt-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button-form {
+  display: table;
+  margin-top: 10px;
+}
+
+.button-form > span {
+  text-align: center;
+}

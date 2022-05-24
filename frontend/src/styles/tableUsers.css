@@ -1,0 +1,29 @@
+.table-component {
+  width: 90%;
+}
+
+@media screen and (max-width: 500px) {
+  .table-component {
+    width: 94%;
+  }
+
+  table {
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  .table-hover thead {
+    display: none;
+  }
+
+  .table-hover tbody {
+    position: static;
+    overflow-x: visible;
+  }
+
+  .table-hover tbody tr {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+  }
+}

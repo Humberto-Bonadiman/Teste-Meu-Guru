@@ -12,11 +12,20 @@ interface IUser {
 }
 
 type UserContextType = {
+  user: IUser,
+  setUser: React.Dispatch<React.SetStateAction<IUser>>;
   allUsers: IUser[];
   setAllUsers: React.Dispatch<React.SetStateAction<IUser[]>>;
 };
 
 const initialValue = {
+  user:     {
+    id: 0,
+    name: '',
+    email: '',
+    password: ''
+  },
+  setUser: () => {},
   allUsers: [
     {
       id: 0,
@@ -32,5 +41,6 @@ export const UserContext = createContext<UserContextType>(initialValue);
 
 export const UserContextProvider = ({ children }: UserContextProps) => {
   const [allUsers, setAllUsers] = useState(initialValue.allUsers);
-  return <UserContext.Provider value={{ allUsers, setAllUsers }}>{children}</UserContext.Provider>;
+  const [user, setUser] = useState(initialValue.user);
+  return <UserContext.Provider value={{ user, setUser, allUsers, setAllUsers }}>{children}</UserContext.Provider>;
 };
