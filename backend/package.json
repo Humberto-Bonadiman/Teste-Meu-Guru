@@ -15,7 +15,7 @@
     "stop": "sudo service postgresql stop",
     "compose-up": "docker-compose up -d",
     "compose-down": "docker-compose down",
-    "test-int": "npm run compose-up && npx prisma migrate dev --name init && jest -i",
+    "test-int": "npm run compose-up && npm run seed && npx prisma migrate dev --name init && mocha -r ts-node/register ./src/tests/*$NAME*.{test,spec}.ts -t 10000 --exit",
     "test": "npm run seed && mocha -r ts-node/register ./src/tests/*$NAME*.{test,spec}.ts -t 10000 --exit"
   },
   "keywords": [],

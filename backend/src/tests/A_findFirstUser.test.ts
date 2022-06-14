@@ -15,18 +15,20 @@ describe('Testar a rota "/user/specific" com GET', () => {
   describe('Se o campo email e o campo password forem preenchidos corretamente', () => {
     let findUser: sinon.SinonStub;
     const userPayload =   {
-      id: 11,
+      id: 1110,
       email: 'julio_santos@email.com',
       name: 'Júlio Ramiro dos Santos',
       password: '12345678'
     };
     const loginPayload = {
-      find: {
-        id: userPayload.id,
-        email: 'julio_santos@email.com',
-        name: 'Júlio Ramiro dos Santos',
-        password: '12345678'
-      },
+      find: [
+        {
+          id: userPayload.id,
+          email: 'julio_santos@email.com',
+          name: 'Júlio Ramiro dos Santos',
+          password: '12345678'
+        },
+      ],
     };
   
     before(() => {
@@ -43,13 +45,13 @@ describe('Testar a rota "/user/specific" com GET', () => {
         .request(app)
         .post('/user/specific')
         .set('X-API-Key', 'foobar')
-        .send({ name: 'Júlio Ramiro dos Santos' });
+        .send({ name: 'Júlio' });
 
-      const bodyFind = chaiHttpResponse.body.find;
+      const bodyFind = chaiHttpResponse.body.find[0];
       expect(chaiHttpResponse).to.have.status(StatusCode.OK);
-      expect(bodyFind.name).to.deep.equal(loginPayload.find.name);
-      expect(bodyFind.email).to.deep.equal(loginPayload.find.email);
-      expect(bodyFind.password).to.deep.equal(loginPayload.find.password);
+      expect(bodyFind.name).to.deep.equal(loginPayload.find[0].name);
+      expect(bodyFind.email).to.deep.equal(loginPayload.find[0].email);
+      expect(bodyFind.password).to.deep.equal(loginPayload.find[0].password);
     });
   });
 

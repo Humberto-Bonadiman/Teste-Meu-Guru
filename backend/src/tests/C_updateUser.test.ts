@@ -15,7 +15,7 @@ describe('Testar a rota "user/" com PUT', () => {
     it('Retorna o erro  com status 401 e a mensagem "name" is required', async () => {
       chaiHttpResponse = await chai
          .request(app)
-         .put('/user/12')
+         .put('/user/1212')
          .set('X-API-Key', 'foobar')
          .send({
             email: 'gustavo_almeida@email.com',
@@ -31,7 +31,7 @@ describe('Testar a rota "user/" com PUT', () => {
     it('Retorna o erro  com status 401 e a mensagem "email" is required', async () => {
       chaiHttpResponse = await chai
          .request(app)
-         .put('/user/12')
+         .put('/user/1212')
          .set('X-API-Key', 'foobar')
          .send({
             name: 'Gustavo Inácio Almeida',
@@ -47,7 +47,7 @@ describe('Testar a rota "user/" com PUT', () => {
     it('Retorna o erro  com status 401 e a mensagem "password" is required', async () => {
       chaiHttpResponse = await chai
          .request(app)
-         .put('/user/12')
+         .put('/user/1212')
          .set('X-API-Key', 'foobar')
          .send({
             email: 'gustavo_almeida@email.com',
@@ -63,7 +63,7 @@ describe('Testar a rota "user/" com PUT', () => {
     it('Retorna o erro  com status 401 e a mensagem Format of email is invalid', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .put('/user/12')
+        .put('/user/1212')
         .set('X-API-Key', 'foobar')
         .send({
           email: 'gustavo_almeida@.com',
@@ -80,7 +80,7 @@ describe('Testar a rota "user/" com PUT', () => {
     it('Retorna o erro  com status 401 e a mensagem com nome menor que 8 caracteres', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .put('/user/12')
+        .put('/user/1212')
         .set('X-API-Key', 'foobar')
         .send({
           email: 'gustavo_almeida@email.com',
@@ -97,7 +97,7 @@ describe('Testar a rota "user/" com PUT', () => {
     it('Retorna o erro  com status 401 e a mensagem com senha menor que 6 caracteres', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .put('/user/12')
+        .put('/user/1212')
         .set('X-API-Key', 'foobar')
         .send({
           email: 'gustavo_almeida@email.com',
@@ -142,7 +142,7 @@ describe('Testar a rota "user/" com PUT', () => {
     it('Retorna o status 200 com os dados alterados', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .put('/user/12')
+        .put('/user/1212')
         .set('X-API-Key', 'foobar')
         .send({
           email: 'gustavo_inacio@email.com',
