@@ -9,6 +9,9 @@
   "scripts": {
     "dev:prestart": "./scripts/prestart-dev.sh",
     "dev": "./scripts/prepare-for-dev.sh",
+    "install-all": "npm install && cd backend && npm install && cd ..  && cd frontend && npm install",
+    "start-back": "cd backend && npm start",
+    "start-front": "cd frontend && npm start",
     "seed": "cd backend && npx prisma generate && npx prisma migrate dev && ts-node prisma/seed.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

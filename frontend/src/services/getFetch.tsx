@@ -29,15 +29,12 @@ export const fetchAllUsers = async () => {
 };
 
 export const fetchUser = async (name: string) => {
-  const fetchUser = fetch(`http://${URL}:${PORT}/user/specific`, {
-    method: 'POST',
+  const fetchUser = fetch(`http://${URL}:${PORT}/user/search?name=${name}`, {
+    method: 'GET',
     headers: {
       Accept: appJson,
       'Content-Type': appJson
-    },
-    body: JSON.stringify({
-      name
-    })
+    }
   });
 
   const response = await fetchUser;
