@@ -31,7 +31,7 @@ describe('Testar a rota "/user/specific" com GET', () => {
   
     before(() => {
       const prisma = new PrismaClient();
-      findUser = sinon.stub(prisma.user, 'findFirst');
+      findUser = sinon.stub(prisma.user, 'findMany');
       findUser.resolves(userPayload);
     });
     after( async () => {
@@ -41,9 +41,9 @@ describe('Testar a rota "/user/specific" com GET', () => {
     it('Retorna o usuário encontrado', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .post('/user/specific')
+        .get('/user/specific')
         .set('X-API-Key', 'foobar')
-        .send({ email: 'julio_santos@email.com', name: 'Júlio Ramiro dos Santos' });
+        .send({ name: 'Júlio Ramiro dos Santos' });
 
       const bodyFind = chaiHttpResponse.body.find;
       expect(chaiHttpResponse).to.have.status(StatusCode.OK);
@@ -53,47 +53,16 @@ describe('Testar a rota "/user/specific" com GET', () => {
     });
   });
 
-  describe('Se o campo email estiver vazio', () => {
-    it('Retorna o erro  com status 401 e a mensagem "email" is required', async () => {
-      chaiHttpResponse = await chai
-         .request(app)
-         .post('/user/specific')
-         .set('X-API-Key', 'foobar')
-         .send({ name: 'Júlio Ramiro dos Santos' });
-
-      console.log(chaiHttpResponse.body);
-        
-      expect(chaiHttpResponse).to.have.status(StatusCode.UNAUTHORIZED);
-      expect(chaiHttpResponse.body.message).to.be.equal('Email is required');
-    });
-  });
-
   describe('Se o campo name estiver vazio', () => {
     it('Retorna o erro  com status 401 e a mensagem "name" is required', async () => {
       chaiHttpResponse = await chai
          .request(app)
-         .post('/user/specific')
+         .get('/user/specific')
          .set('X-API-Key', 'foobar')
-         .send({ email: 'julio_santos@email.com' });
+         .send({ });
         
       expect(chaiHttpResponse).to.have.status(StatusCode.UNAUTHORIZED);
       expect(chaiHttpResponse.body.message).to.be.equal('Name is required');
-    });
-  });
-
-  describe('Se o campo email estiver com email inválido', () => {
-    it('Retorna o erro  com status 401 e a mensagem Format of email is invalid', async () => {
-      chaiHttpResponse = await chai
-        .request(app)
-        .post('/user/specific')
-        .set('X-API-Key', 'foobar')
-        .send({
-          email: 'julio_santos@com',
-          name: 'Júlio Ramiro dos Santos'
-        });
-
-      expect(chaiHttpResponse).to.have.status(StatusCode.UNAUTHORIZED);
-      expect(chaiHttpResponse.body.message).to.be.equal('Format of email is invalid');
     });
   });
 });

@@ -43,7 +43,7 @@ const findUser = (name: string) => {
   const User = prisma.user.findMany({
     where: {
       name: {
-        startsWith: name
+        contains: name
       }
     },
   });
