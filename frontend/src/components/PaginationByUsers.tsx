@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchAllUsers } from '../services/getFetch';
 import { Pagination } from 'react-bootstrap';
 

@@ -16,8 +16,8 @@ const findAllUser = async (_req: Request, res: Response) => {
 }
 
 const findUser = async (req: Request, res: Response) => {
-  const { email, name } = req.body;
-  const find = await userService.findUser(email, name);
+  const { name } = req.body;
+  const find = await userService.findUser(name);
   if (find === null) {
     return res.status(StatusCode.NOT_FOUND).json({ message: NOTFOUND });
   };

@@ -1,0 +1,28 @@
+{
+  "name": "teste_meu_guru",
+  "version": "1.0.0",
+  "description": "Desafio Full-Stack da empresa Meu Guru",
+  "main": "index.js",
+  "prisma": {
+    "seed": "cd backend && ts-node prisma/seed.ts"
+  },
+  "scripts": {
+    "dev:prestart": "./scripts/prestart-dev.sh",
+    "dev": "./scripts/prepare-for-dev.sh",
+    "seed": "cd backend && npx prisma generate && npx prisma migrate dev && ts-node prisma/seed.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Humberto-Bonadiman/Teste-Meu-Guru.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Humberto-Bonadiman/Teste-Meu-Guru/issues"
+  },
+  "homepage": "https://github.com/Humberto-Bonadiman/Teste-Meu-Guru#readme",
+  "dependencies": {
+    "pm2": "^5.2.0"
+  }
+}
