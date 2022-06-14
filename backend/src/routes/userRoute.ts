@@ -18,9 +18,8 @@ router
   )
   .get('/', userController.findAllUser)
   .get('/search/:page', userController.findUserByPagination)
-  .post(
-    '/specific',
-    userMiddleware.withoutName,
+  .get(
+    '/search',
     userController.findUser
   )
   .put(

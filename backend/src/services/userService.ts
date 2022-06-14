@@ -39,7 +39,7 @@ const findUserByPagination = (page: number) => {
   return User;
 }
 
-const findUser = (name: string) => {
+const findUser = (name: string | undefined) => {
   const User = prisma.user.findMany({
     where: {
       name: {

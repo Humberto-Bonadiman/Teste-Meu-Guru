@@ -12,7 +12,7 @@ const { expect } = chai;
 describe('Testar a rota "/user/specific" com GET', () => {
   let chaiHttpResponse: Response;
 
-  describe('Se o campo email e o campo password forem preenchidos corretamente', () => {
+  describe('Se o campo name for preenchido corretamente', () => {
     let findUser: sinon.SinonStub;
     const userPayload =   {
       id: 1110,
@@ -43,9 +43,8 @@ describe('Testar a rota "/user/specific" com GET', () => {
     it('Retorna o usuário encontrado', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .post('/user/specific')
-        .set('X-API-Key', 'foobar')
-        .send({ name: 'Júlio' });
+        .get('/user/search?name=Júlio')
+        .set('X-API-Key', 'foobar');
 
       const bodyFind = chaiHttpResponse.body.find[0];
       expect(chaiHttpResponse).to.have.status(StatusCode.OK);
@@ -55,16 +54,18 @@ describe('Testar a rota "/user/specific" com GET', () => {
     });
   });
 
-  describe('Se o campo name estiver vazio', () => {
-    it('Retorna o erro  com status 401 e a mensagem "name" is required', async () => {
+  describe('Se o campo for preenchido com um usuário que não está no banco de dados', () => {
+    const loginPayload = {
+      find: []
+    };
+    it('Retorna com status 200 e um array vazio', async () => {
       chaiHttpResponse = await chai
          .request(app)
-         .post('/user/specific')
-         .set('X-API-Key', 'foobar')
-         .send({ });
+         .get('/user/search?name=abcdefgh')
+         .set('X-API-Key', 'foobar');
         
-      expect(chaiHttpResponse).to.have.status(StatusCode.UNAUTHORIZED);
-      expect(chaiHttpResponse.body.message).to.be.equal('Name is required');
+      expect(chaiHttpResponse).to.have.status(StatusCode.OK);
+      expect(chaiHttpResponse.body.find[0]).to.deep.equal(loginPayload.find[0]);
     });
   });
 });

@@ -7,7 +7,7 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "scripts": {
-    "start": "sudo service postgresql stop && docker-compose up -d && nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
+    "start": "sudo service postgresql stop && docker-compose up -d && npm run seed && nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "seed": "npx prisma generate && npx prisma migrate dev && ts-node prisma/seed.ts",
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "lint": "eslint . --ext .ts",
@@ -15,8 +15,7 @@
     "stop": "sudo service postgresql stop",
     "compose-up": "docker-compose up -d",
     "compose-down": "docker-compose down",
-    "test-int": "npm run compose-up && npm run seed && npx prisma migrate dev --name init && mocha -r ts-node/register ./src/tests/*$NAME*.{test,spec}.ts -t 10000 --exit",
-    "test": "npm run seed && mocha -r ts-node/register ./src/tests/*$NAME*.{test,spec}.ts -t 10000 --exit"
+    "test": "npm run compose-up && npm run seed && npx prisma migrate dev --name init && mocha -r ts-node/register ./src/tests/*$NAME*.{test,spec}.ts -t 10000 --exit"
   },
   "keywords": [],
   "author": "",

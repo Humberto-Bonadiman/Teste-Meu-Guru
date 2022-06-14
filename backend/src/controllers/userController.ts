@@ -16,7 +16,10 @@ const findAllUser = async (_req: Request, res: Response) => {
 }
 
 const findUser = async (req: Request, res: Response) => {
-  const { name } = req.body;
+  const { name } = req.query;
+  if (typeof name !== "string") {
+    throw new Error("Query param 'name' has to be of type string");
+  }
   const find = await userService.findUser(name);
   if (find === null) {
     return res.status(StatusCode.NOT_FOUND).json({ message: NOTFOUND });
