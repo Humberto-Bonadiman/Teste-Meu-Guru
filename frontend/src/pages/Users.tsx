@@ -9,7 +9,7 @@ function Users() {
 
   return (
     <div className="users">
-      <h2>Usuários Cadastrados</h2>
+      <h2 data-testid="title-users">Usuários Cadastrados</h2>
       <UserInformation />
       <TableUsers />
       <PaginationByUsers active={Number(params.page)} />
