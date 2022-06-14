@@ -8,15 +8,15 @@ interface IActive {
 }
 
 function PaginationByUsers({ active }: IActive) {
-  const [users, setUsers] = useState([]);
+  const [getAllUsers, setGetAllUsers] = useState([]);
 
   const getPageUsers = async () => {
     const response = await fetchAllUsers();
     const data = await response.json();
-    setUsers(data.findAll);
+    setGetAllUsers(data.findAll);
   };
 
-  const numberUsers = Math.ceil(users.length / 10);
+  const numberUsers = Math.ceil(getAllUsers.length / 10);
 
   useEffect(() => {
     getPageUsers();

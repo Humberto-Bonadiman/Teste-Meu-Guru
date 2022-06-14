@@ -28,7 +28,7 @@ export const fetchAllUsers = async () => {
   return response;
 };
 
-export const fetchOneUser = async (email: string, name: string) => {
+export const fetchUser = async (name: string) => {
   const fetchUser = fetch(`http://${URL}:${PORT}/user/specific`, {
     method: 'POST',
     headers: {
@@ -36,7 +36,6 @@ export const fetchOneUser = async (email: string, name: string) => {
       'Content-Type': appJson
     },
     body: JSON.stringify({
-      email,
       name
     })
   });

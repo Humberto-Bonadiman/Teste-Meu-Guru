@@ -5,14 +5,14 @@ import { UserContext } from '../context/userContext';
 import '../styles/tableUsers.css';
 
 function TableUsers() {
-  const { allUsers, setAllUsers } = useContext(UserContext);
+  const { users, setUsers } = useContext(UserContext);
   const params = useParams();
   const paramsLessOne = Number(params.page) - 1;
 
   const getAllUsers = async () => {
     const response = await fetchUsers(paramsLessOne);
     const data = await response.json();
-    setAllUsers(data.find);
+    setUsers(data.find);
     localStorage.setItem('user', JSON.stringify(data.find));
   };
 
@@ -31,7 +31,7 @@ function TableUsers() {
           </tr>
         </thead>
         <tbody>
-          {allUsers.map(({ id, name, email }, index) => (
+          {users.map(({ id, name, email }, index) => (
             <tr key={index}>
               <th scope="row">{id}</th>
               <td>{name}</td>

@@ -41,7 +41,7 @@ describe('Testar a rota "/user/specific" com GET', () => {
     it('Retorna o usuário encontrado', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .get('/user/specific')
+        .post('/user/specific')
         .set('X-API-Key', 'foobar')
         .send({ name: 'Júlio Ramiro dos Santos' });
 
@@ -57,7 +57,7 @@ describe('Testar a rota "/user/specific" com GET', () => {
     it('Retorna o erro  com status 401 e a mensagem "name" is required', async () => {
       chaiHttpResponse = await chai
          .request(app)
-         .get('/user/specific')
+         .post('/user/specific')
          .set('X-API-Key', 'foobar')
          .send({ });
         

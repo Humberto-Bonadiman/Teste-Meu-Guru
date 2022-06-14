@@ -1,37 +1,27 @@
 import { useContext, useState } from 'react';
-import { fetchOneUser } from '../services/getFetch';
+import { fetchUser } from '../services/getFetch';
 import { UserContext } from '../context/userContext';
 import { Form, Button, Card } from 'react-bootstrap';
 import '../styles/userInformation.css';
 
 function UserInformation() {
-  const { setAllUsers } = useContext(UserContext);
+  const { setUsers } = useContext(UserContext);
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [error, setError] = useState(false);
   const [active, setActive] = useState(false);
-  const MIN_LENGTH = 8;
-
-  const isEmailValid = (userEmail: string) => {
-    const regexEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    return regexEmail.test(userEmail);
-  };
 
   const handleClick = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    const result = await fetchOneUser(email, name);
-    const POST = 200;
+    const result = await fetchUser(name);
+    const GET = 200;
     const ERROR = 404;
-    console.log(result);
     if (result.status === ERROR) {
       setError(true);
       setTimeout(() => { setError(false) }, 5000);
     }
-    if (result.status === POST) {
+    if (result.status === GET) {
       const body = await result.json();
-      console.log(body);
-      const { id, email, name, password } = body.find;
-      setAllUsers([{ id, email, name, password }]);
+      setUsers(body.find);
       setActive(true);
     }
   };
@@ -40,7 +30,7 @@ function UserInformation() {
     const value = localStorage.getItem('user');
     if (typeof value === 'string') {
       const dataStorage = JSON.parse(value) || [];
-      setAllUsers(dataStorage);
+      setUsers(dataStorage);
       setActive(false);
     }
   };
@@ -56,26 +46,17 @@ function UserInformation() {
       <Form
         className="card mt-3 pb-3 pt-1 container-sm w-50"
       >
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>E-mail</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="joao_augusto@email.com.br"
-            onChange={ ({ target }) => setEmail(target.value) }
-          />
-        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Nome Completo</Form.Label>
+          <Form.Label>Nome</Form.Label>
           <Form.Control
             type="text"
-            placeholder="João Augusto da Silva"
+            placeholder="João"
             onChange={ ({ target }) => setName(target.value) }
           />
         </Form.Group>
         <Button
           variant="primary"
           type="submit"
-          disabled={ !(isEmailValid(email) && name.length >= MIN_LENGTH) }
           className="mt-3 button-form"
           onClick={ handleClick }
         >
