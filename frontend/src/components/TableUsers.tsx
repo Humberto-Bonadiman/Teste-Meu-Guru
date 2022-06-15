@@ -25,16 +25,16 @@ function TableUsers() {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Email</th>
+            <th scope="col" data-testid="table-header-id">Id</th>
+            <th scope="col" data-testid="table-header-name">Nome</th>
+            <th scope="col" data-testid="table-header-email">Email</th>
           </tr>
         </thead>
         <tbody>
           {users.map(({ id, name, email }, index) => (
             <tr key={index}>
               <th scope="row">{id}</th>
-              <td>{name}</td>
+              <td data-testid={`table-data-name-${index}`}>{name}</td>
               <td>{email}</td>
             </tr>
           ))}
