@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress" />
 
-import { notDeepEqual } from "assert";
-
 describe('Test the page "users/1"', () => {
   it('test component UserInformation', () => {
     cy.visit('http://localhost:3000/users/1');
