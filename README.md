@@ -1,6 +1,6 @@
 # Boas vindas ao repositório do projeto Teste MeuGuru
 
-![MeuGuru](http://montink.s3.amazonaws.com/perfil_montink/16373289246197a81c0712c.png)
+![MeuGuru](MeuGuru.png)
 
 ---
 
@@ -16,6 +16,10 @@ Já no front-end eu criei uma aplicação React com TypeScript e fui capaz de:
  - Realizar paginação a cada 10 usuários
 
 ---
+
+## Imagem da Aplicação
+
+![Tabela_de_Usuários](Tabela_Usuarios.png)
 
 ## Instalação do projeto localmente
 
