@@ -39,12 +39,21 @@ const findUserByPagination = (page: number) => {
   return User;
 }
 
-const findUser = (name: string | undefined) => {
+const findUser = (queryString: string | undefined) => {
   const User = prisma.user.findMany({
     where: {
-      name: {
-        contains: name
-      }
+      OR: [
+        {
+          name: {
+            contains: queryString
+          }
+        },
+        {
+          email: {
+            contains: queryString
+          }
+        }
+      ]
     },
   });
 

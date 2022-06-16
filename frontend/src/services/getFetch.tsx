@@ -28,8 +28,8 @@ export const fetchAllUsers = async () => {
   return response;
 };
 
-export const fetchUser = async (name: string) => {
-  const fetchUser = fetch(`http://${URL}:${PORT}/user/search?name=${name}`, {
+export const fetchUser = async (queryString: string) => {
+  const fetchUser = fetch(`http://${URL}:${PORT}/user/search?queryString=${queryString}`, {
     method: 'GET',
     headers: {
       Accept: appJson,
