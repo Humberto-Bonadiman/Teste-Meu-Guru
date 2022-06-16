@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express';
 import cors from 'cors';
 import userRoute from './routes/userRoute';
@@ -9,6 +10,8 @@ app.use(cors());
 
 app.use('/user', userRoute.router);
 
-app.listen(3001, () =>
-  console.log('REST API server ready at: http://localhost:3001'),
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () =>
+  console.log(`Server running on port ${PORT}`),
 );
