@@ -34,7 +34,12 @@ Já no front-end eu criei uma aplicação React com TypeScript e fui capaz de:
   npm run install-all
 ```
 
-3. Por último, abra duas abas do terminal e em uma rode o comando **npm run start-back** e na outra rode o comando **npm run start-front** acesse o projeto via browser, no caminho `http://localhost:3000/`.
+3. No arquivo **.env.example** localizada na pasta backend, troque onde contém **userPostgres** pelo seu usuário do postgresql e onde contém **passwordPostgres** mude para a sua senha do postgres.
+```javascript
+DATABASE_URL="postgresql://userPostgres:passwordPostgres@localhost:5432/mydb?schema=public"
+```
+
+4. Por último, abra duas abas do terminal e em uma rode o comando **npm run start-back** e na outra rode o comando **npm run start-front** acesse o projeto via browser, no caminho `http://localhost:3000/`.
 ```javascript
   npm run start-back
 ```
@@ -44,7 +49,7 @@ Já no front-end eu criei uma aplicação React com TypeScript e fui capaz de:
 
 ---
 
-## Teste
+## Testes
 
 ### Para testar a aplicação frontend utilize os comandos abaixo no terminal a partir da raiz do projeto
 
