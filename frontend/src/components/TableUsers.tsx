@@ -27,7 +27,7 @@ function TableUsers() {
           <tr>
             <th scope="col" data-testid="table-header-id">Id</th>
             <th scope="col" data-testid="table-header-name">Nome</th>
-            <th scope="col" data-testid="table-header-email">Email</th>
+            <th scope="col" data-testid="table-header-email">E-mail</th>
           </tr>
         </thead>
         <tbody>

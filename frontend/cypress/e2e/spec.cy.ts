@@ -4,7 +4,7 @@
 describe('Test the page "users/1"', () => {
   it('test component UserInformation', () => {
     cy.visit('http://localhost:3000/users/1');
-    cy.get('[data-testid="form-label"]').should('have.text', 'Nome');
+    cy.get('[data-testid="form-label"]').should('have.text', 'Nome ou E-mail');
     cy.get('[data-testid="input-name"]');
     cy.get('[data-testid="form-button-verify"]').should('have.text', 'Verificar');
     cy.get('[data-testid="form-button-return"]').should('have.text', 'Voltar');
@@ -13,7 +13,7 @@ describe('Test the page "users/1"', () => {
     cy.visit('http://localhost:3000/users/1');
     cy.get('[data-testid="table-header-id"]').should('have.text', 'Id');
     cy.get('[data-testid="table-header-name"]').should('have.text', 'Nome');
-    cy.get('[data-testid="table-header-email"]').should('have.text', 'Email');
+    cy.get('[data-testid="table-header-email"]').should('have.text', 'E-mail');
   });
   it('search for Hugo in the database', () => {
     cy.visit('http://localhost:3000/users/1');

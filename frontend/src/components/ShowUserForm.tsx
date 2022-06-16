@@ -2,9 +2,9 @@ import { useContext, useState } from 'react';
 import { fetchUser } from '../services/getFetch';
 import { UserContext } from '../context/userContext';
 import { Form, Button } from 'react-bootstrap';
-import '../styles/userInformation.css';
+import '../styles/showUserForm.css';
 
-function UserInformation() {
+function ShowUserForm() {
   const { setUsers } = useContext(UserContext);
   const [name, setName] = useState('');
   const [active, setActive] = useState(false);
@@ -34,11 +34,11 @@ function UserInformation() {
       className="card mt-3 pb-3 pt-1 container-sm w-50"
     >
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label data-testid="form-label">Nome</Form.Label>
+        <Form.Label data-testid="form-label">Nome ou E-mail</Form.Label>
         <Form.Control
           type="text"
           data-testid="input-name"
-          placeholder="João"
+          placeholder="Nome ou E-mail"
           onChange={ ({ target }) => setName(target.value) }
         />
       </Form.Group>
@@ -65,4 +65,4 @@ function UserInformation() {
   );
 };
 
-export default UserInformation;
+export default ShowUserForm;

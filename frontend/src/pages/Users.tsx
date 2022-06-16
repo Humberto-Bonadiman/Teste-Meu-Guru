@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import PaginationByUsers from '../components/PaginationByUsers';
 import TableUsers from '../components/TableUsers';
-import UserInformation from '../components/UserInformation';
+import ShowUserForm from '../components/ShowUserForm';
 import '../styles/users.css';
 
 function Users() {
@@ -10,7 +10,7 @@ function Users() {
   return (
     <div className="users">
       <h2 data-testid="title-users">Usuários Cadastrados</h2>
-      <UserInformation />
+      <ShowUserForm />
       <TableUsers />
       <PaginationByUsers active={Number(params.page)} />
     </div>
