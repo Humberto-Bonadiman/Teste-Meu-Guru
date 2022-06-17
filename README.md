@@ -70,3 +70,134 @@ OBS.: Para rodar estes testes é necessário que o backend do projeto **NÃO** e
 ```
 
 ---
+
+## Exemplos de uso da API no terminal
+
+OBS.: Para realizar os comandos abaixo você deve abrir duas abas do terminal e digitar os comandos a partir da pasta raiz
+</br>
+Terminal 1
+```javascript
+  npm run start-back
+```
+Terminal 2
+```javascript
+  cd backend
+```
+Os próximos passos serão realizados no terminal 2
+
+OBS.: O body das requisições de criação e atualização de usuários seguem as seguintes regras:
+ - **name**, **email** e **password** são obrigatórios
+ - O campo **email** é único por usuário
+ - O campo **name** deve conter pelo menos 8 caracteres
+ - O campo **password** deve conter pelo menos 6 caracteres
+ - O campo **email** deve conter um e-mail válido no seguinte formato -> usuario@email.com
+
+### Digite o comando abaixo para criar um usuário
+```javascript
+http :3001/user name='Bianca Araujo Monteiro' email='bianca_monteiro@email.com' password='12345678'
+```
+
+### Digite o comando abaixo para visualizar todos os usuários cadastrados
+```javascript
+http :3001/user
+```
+### Digite o comando abaixo para visualizar os primeiros 10 usuários cadastrados
+```javascript
+http :3001/user/search/1
+```
+
+### Digite o comando abaixo para visualizar o usuário conforme o nome ou e-mail
+```javascript
+http :3001/user/search queryString==Bianca
+```
+
+### Digite o comando abaixo para atualizar os dados do usuário criado
+OBS.: Utilizar o id gerado na criação do usuário no lugar de :id
+```javascript
+http PUT :3001/user/:id email='bianca_araujo@email.com' name='Bianca Araujo Monteiro' password='123456789'
+```
+
+### Digite o comando abaixo para deletar os dados do usuário
+OBS.: Utilizar o id gerado na criação do usuário no lugar de :id
+```javascript
+http DELETE :3001/user/:id
+```
+
+---
+
+## Exemplos de uso da API em programas de requisições de HTTP (Ex.: Postman, Insomnia, Thunder Client)
+</br>
+Terminal
+
+```javascript
+  npm run start-back
+```
+
+OBS.: O body das requisições de criação e atualização de usuários seguem as seguintes regras:
+ - **name**, **email** e **password** são obrigatórios
+ - O campo **email** é único por usuário
+ - O campo **name** deve conter pelo menos 8 caracteres
+ - O campo **password** deve conter pelo menos 6 caracteres
+ - O campo **email** deve conter um e-mail válido no seguinte formato -> usuario@email.com
+
+### Digite os comandos abaixo para criar um usuário
+```javascript
+http://localhost:3001/user
+```
+body
+```javascript
+{
+    "email": "bianca_monteiro@email.com",
+    "name": "Bianca Araujo Monteiro",
+    "password": "12345678"
+}
+```
+![CREATE](CREATE.png)
+
+### Digite os comandos abaixo para visualizar todos os usuários cadastrados
+```javascript
+http://localhost:3001/user
+```
+
+![GET_ALL](GET_All.png)
+
+### Digite os comandos abaixo para visualizar os primeiros 10 usuários cadastrados
+```javascript
+http://localhost:3001/user/search/1
+```
+
+![GET_Pagination](GET_Pagination.png)
+
+
+### Digite os comandos abaixo para visualizar o usuário conforme o nome ou e-mail
+```javascript
+http://localhost:3001/user/search?queryString=Bianca
+```
+
+![GET_QueryString](GET_QueryString.png)
+
+### Digite os comandos abaixo para atualizar os dados do usuário criado
+OBS.: Utilizar o id gerado na criação do usuário no lugar de :id
+
+```javascript
+http://localhost:3001/user/:id
+```
+
+body
+```javascript
+{
+    "email": "bianca_araujo@email.com",
+    "name": "Bianca Araujo Monteiro",
+    "password": "12345678"
+}
+```
+
+![UPDATE](UPDATE.png)
+
+### Digite o comando abaixo para deletar os dados do usuário
+OBS.: Utilizar o id gerado na criação do usuário no lugar de :id
+```javascript
+http://localhost:3001/user/:id
+```
+
+![DELETE.png](DELETE.png)
